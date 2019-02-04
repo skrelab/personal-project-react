@@ -40,7 +40,7 @@ class App extends Component {
             <div>
             { 
                 this.state.authenticated? 
-                <Repository events={this.props.events} />
+                <Repository events={this.props.events} pulls={this.props.pulls} />
                 : 
                 <Login onSubmit={this.handleOnSubmit} onChange={this.handleOnChange} username={this.state.username} />
             }
