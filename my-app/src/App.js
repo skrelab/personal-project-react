@@ -21,20 +21,35 @@ class App extends Component {
     // Lifecycle methods
     componentDidMount() {
         // console.log("Mounted!");
-        // fetch('https://api.github.com/users/pkanal/events')
         fetch('https://api.github.com/users/pkanal/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f') 
             .then(response => response.json())
             .then(data => {
-                // console.log('Response from API call:', data)
-                const forked = data.filter((datum) => {
+                // console.log('Response from API call to repos endpoint:', data)
+                const forked = data.filter(datum => {
                     if (datum.fork) {
                         return datum;
                     }
                 });
-                // console.log(forkedEvents);
+
                 this.setState({
                     forked
                 });
+
+                fetch('https://api.github.com/users/pkanal/events?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f')
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log('Response from API call to events endpoint:', data)
+                        const events = data.reduce((categorizedEvents, currentEvent) => {   
+                            return Object.assign(
+                                categorizedEvents,
+                                { [currentEvent.type]: [...(categorizedEvents[currentEvent.type] || []), currentEvent] }
+                            ); 
+                        }, []); 
+
+                        this.setState({
+                            pulls: events.PullRequestEvent
+                        });
+                    });
             })
     }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 
 export const Repository = (props) => {
-	console.log(props.forked); 
-	// console.log(props.pulls); 
+	console.log('Forked:', props.forked); 
+	console.log('Pulls:', props.pulls); 
 
-	const gitHubDomain = 'https://github.com/';
+	// const gitHubDomain = 'https://github.com/:user/:repo';
 	return (
 		<div>
 			<h1 className="mb-4">Welcome to the Repository</h1>
@@ -31,24 +31,22 @@ export const Repository = (props) => {
 			        </tr>
 			    </thead>
 			    <tbody>
-			    	{Object.keys(props.pulls).map((key, index) => {
-			    		const pull = props.pulls[key];
+			    	{props.pulls.map((item, index) => {
 			    		return (
 			    			<tr key={index}>
 			    				<td>
-			    					<a href={pull.url}>{pull.title}
+			    					<a href={item.payload.pull_request.html_url}>{item.payload.pull_request.title}
 			    						<span className={
-			    							pull.state === 'open'? 'badge badge-success ml-2' : 
-			    							(pull.state === 'closed'? 'badge badge-dark ml-2' : 'badge badge-dark ml-2')
+			    							item.payload.action === 'opened'? 'badge badge-success ml-2' : 
+			    							(item.payload.action === 'closed'? 'badge badge-dark ml-2' : 'badge badge-dark ml-2')
 			    						}>
-			    						{pull.state}
+			    						{item.payload.action}
 			    						</span>
 			    					</a>
-			    				</td>
+			    				</td> 
 			    			</tr>
-			    		);	
+			    		);
 			    	})}
-
 			    </tbody>
 			</table>
 		</div>
