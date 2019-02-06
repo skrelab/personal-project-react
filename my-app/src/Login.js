@@ -12,11 +12,6 @@ export const Login = (props) => {
 		    </div>
 		    <form onSubmit={props.onSubmit}>
 		        <TextField onChange={props.onChange} username={props.username} />
-		        <div className="form-group">
-		            <label htmlFor="inputPassword">Password</label>
-		            <input type="password" className="form-control" id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter your password" />
-		            <small id="passwordHelp" className="form-text text-muted">Any password will work because, well, this is fake.</small>
-		        </div>
 		        <Button />
 		    </form>
 		</div>

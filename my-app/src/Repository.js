@@ -1,9 +1,10 @@
 import React from 'react';
 
 export const Repository = (props) => {
-	console.log(props.events); // array
-	console.log(props.pulls); // object
+	console.log(props.forked); 
+	// console.log(props.pulls); 
 
+	const gitHubDomain = 'https://github.com/';
 	return (
 		<div>
 			<h1 className="mb-4">Welcome to the Repository</h1>
@@ -14,10 +15,10 @@ export const Repository = (props) => {
 			        </tr>
 			    </thead>
 			    <tbody>
-			    	{props.events.ForkEvent.map((event, index) => {
+			    	{props.forked.map((item, index) => {
 			    		return (
 			    			<tr key={index}>
-			    				<td><a href={event.repo.url}>{event.repo.name}</a></td>
+			    				<td><a href="#">{item.name}</a></td> 
 			    			</tr>
 			    		);
 			    	})}

@@ -5,27 +5,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // Import static data
-import { events } from './events';
-import { pulls } from './pulls';
+// import { events } from './events';
+// import { pulls } from './pulls';
 
 // Transform events with static function
-const transformEvents = (evts) => {
+// const transformEvents = (evts) => {
 	
-	return evts.reduce((categorizedEvents, currentEvent) => {
+	// return evts.reduce((categorizedEvents, currentEvent) => {
 		
-		return Object.assign(
-			categorizedEvents,
-			{ [currentEvent.type]: [...(categorizedEvents[currentEvent.type] || []), currentEvent] }
-		); 
-	}, []);	
-}
+	// 	return Object.assign(
+	// 		categorizedEvents,
+	// 		{ [currentEvent.type]: [...(categorizedEvents[currentEvent.type] || []), currentEvent] }
+	// 	); 
+	// }, []);	
+// }
 
-const transformedEvents = transformEvents(events);
+// const transformedEvents = transformEvents(events);
 
-
-
-
-ReactDOM.render(<App events={transformedEvents} pulls={pulls} />, document.getElementById('root'));
+// ReactDOM.render(<App events={transformedEvents} pulls={pulls} />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
