@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './Button';
-import { TextField } from './TextField';
+// import { TextField } from './TextField';
 
 export const Login = (props) => {
 	// console.log('This is the login component', props);
@@ -11,7 +11,11 @@ export const Login = (props) => {
 		      <hr className="mb-3" />  
 		    </div>
 		    <form onSubmit={props.onSubmit}>
-		        <TextField onChange={props.onChange} username={props.username} />
+		        <div className="form-group">
+		            <label htmlFor="inputUsername">Username</label>
+		            <input type="text" name="username" className="form-control" id="inputUsername" aria-describedby="usernameHelp" placeholder="Enter your username" />
+		        	<small id="usernameHelp" className="form-text text-muted">Any username will work because, well, this is fake.</small>
+		        </div>
 		        <Button />
 		    </form>
 		</div>
