@@ -1,10 +1,5 @@
 // Action creators
 
-// export const onForkedReceived = (data) => ({
-// 	type: 'ON_FORKED_RECEIVED',
-// 	payload: data
-// })
-
 export const forkedHasErrored = (bool) => {
     return {
         type: 'FORKED_HAS_ERRORED',
@@ -31,15 +26,15 @@ export const forkedFetchData = (url) => {
     return (dispatch) => {
         dispatch(forkedIsLoading(true));
         fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
+            .then(response => {
+                // if (!response.ok) {
+                //     throw Error(response.statusText);
+                // }
                 dispatch(forkedIsLoading(false));
                 return response;
             })
-            .then((response) => response.json())
-            .then((data) => {
+            .then(response => response.json())
+            .then(data => {
             	const forked = data.filter(datum => {
             	    if (datum.fork) {
             	        return datum;

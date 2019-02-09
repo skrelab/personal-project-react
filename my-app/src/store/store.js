@@ -8,6 +8,9 @@ const initialState = {
 	forkedHasErrored: false,
 	forkedIsLoading: false,
 	forked: [],
+	pullsHasErrored: false,
+	pullsIsLoading: false,
+	pulls: [],
 }
 
 export const store = createStore(rootReducer, initialState, applyMiddleware(logger, thunk));
