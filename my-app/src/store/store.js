@@ -13,4 +13,20 @@ const initialState = {
 	pulls: [],
 }
 
+// const initialState = {
+//     authenticated: false,
+//     data: {
+//         forked: {
+//             hasErrored: false,
+//             isLoading: false,
+//             items: []
+//         },
+//         pulls: {
+//             hasErrored: false,
+//             isLoading: false,
+//             items: []
+//         }
+//     }
+// }
+
 export const store = createStore(rootReducer, initialState, applyMiddleware(logger, thunk));

@@ -20,35 +20,8 @@ class App extends Component {
     // Lifecycle methods
     componentDidMount() {
         
-        this.props.forkedFetchData('https://api.github.com/users/pkanal2/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f');
+        this.props.forkedFetchData('https://api.github.com/users/pkanal/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f');
         this.props.pullsFetchData('https://api.github.com/users/pkanal/events?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f');
-        
-        // fetch('https://api.github.com/users/pkanal/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f') 
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         const forked = data.filter(datum => {
-        //             if (datum.fork) {
-        //                 return datum;
-        //             }
-        //         });
- 
-        //         this.props.onForkedReceived(forked);
-
-        //         fetch('https://api.github.com/users/pkanal/events?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f')
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 const events = data.reduce((categorizedEvents, currentEvent) => {   
-        //                     return Object.assign(
-        //                         categorizedEvents,
-        //                         { [currentEvent.type]: [...(categorizedEvents[currentEvent.type] || []), currentEvent] }
-        //                     ); 
-        //                 }, []); 
-
-        //                 this.props.onPullsReceived(events.PullRequestEvent);
-
-        //             })
-        //     })
-        //     .catch(error => console.error('Error:', error));
     }
 
     // Methods
@@ -56,7 +29,7 @@ class App extends Component {
         event.preventDefault();
 
         if (event.target.elements.username.value) {
-            this.props.authenticate();
+            this.props.authenticate(true);
         }
     }
     
@@ -94,7 +67,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({ 
-    authenticate: () => dispatch(authenticate()), 
+    authenticate: (bool) => dispatch(authenticate(bool)), 
     forkedFetchData: (url) => dispatch(forkedFetchData(url)), 
     pullsFetchData: (url) => dispatch(pullsFetchData(url)), 
 })

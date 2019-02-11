@@ -2,8 +2,6 @@ import React from 'react';
 
 export const Repository = (props) => {
 
-	// const gitHubDomain = 'https://github.com/:user/:repo';
-
 	return (
 		<div>
 			<h1 className="mb-4">Welcome to the Repository</h1>
@@ -14,13 +12,13 @@ export const Repository = (props) => {
 			        </tr>
 			    </thead>
 			    <tbody>
-			    	{ props.forkedHasErrored? <div className="alert alert-danger mt-3">Sorry! There was an error loading the forked items</div> : '' }
-			    	{ props.forkedisLoading? <div class="spinner-border text-dark mt-3" role="status"><span class="sr-only">Loading...</span></div> : '' }
+			    	{props.forkedHasErrored? <div className="alert alert-danger mt-3">Sorry! There was an error loading the forked items</div> : ''}
+			    	{props.forkedisLoading? <div class="spinner-border text-dark mt-3" role="status"><span class="sr-only">Loading...</span></div> : ''}
 
 			    	{props.forked.map((item, index) => {
 			    		return (
 			    			<tr key={index}>
-			    				<td><a href="#">{item.name}</a></td> 
+			    				<td><a href={item.html_url}>{item.name}</a></td> 
 			    			</tr>
 			    		);
 			    	})}
