@@ -1,26 +1,29 @@
-export const dataHasErrored = (state = false, action) => {
+const initialState = {
+    hasErrored: false,
+    isLoading: false,
+    items: []
+}
+
+export const data = (state = initialState, action) => {
     switch (action.type) {
         case 'DATA_HAS_ERRORED':
-            return action.hasErrored;
-        default:
-            return state;
-    }
-}
-
-export const dataIsLoading = (state = false, action) => {
-    switch (action.type) {
+            return {
+                ...state, 
+                hasErrored: action.hasErrored 
+            };
         case 'DATA_IS_LOADING':
-            return action.isLoading;
+            return {
+                ...state,
+                isLoading: action.isLoading
+  
+            };
+        case 'DATA_FETCH_SUCCESS':
+            return {
+              ...state,
+              items: action.payload  
+            };
         default:
             return state;
     }
 }
 
-export const data = (state = [], action) => {
-    switch (action.type) {
-        case 'DATA_FETCH_SUCCESS':
-            return action.payload;
-        default:
-            return state;
-    }
-}

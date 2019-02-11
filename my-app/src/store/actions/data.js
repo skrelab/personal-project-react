@@ -29,13 +29,6 @@ export const fetchData = (url1, url2) => {
 			fetch(url1),
 			fetch(url2),
 		])
-		// .then(responses => {
-		// 	console.log('----------------RESPONSES:');
-		// 	for(let response of responses) {
-		// 		console.log(`${response.url}: ${response.status}`); // shows 200 for every url
-		// 	}
-		// 	return responses;
-		// })
 		.then(responses => Promise.all(
 			responses.map(r => r.json())
 		))
@@ -56,7 +49,8 @@ export const fetchData = (url1, url2) => {
 
 	        const pulls = eventsTransformed.PullRequestEvent;
 
-	        dispatch(fetchDataSuccess([forked, pulls]));    
+	        dispatch(fetchDataSuccess([forked, pulls]));
+	        dispatch(dataIsLoading(false));    
 		})
 		.catch(() => dispatch(dataHasErrored(true)));
 	};
