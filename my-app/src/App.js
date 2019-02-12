@@ -19,9 +19,13 @@ class App extends Component {
 
     // Lifecycle methods
     componentDidMount() {
+
+        // Remove access token before submitting
+        const reposEndpoint = 'https://api.github.com/users/pkanal/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f';
+        const eventsEndpoint = 'https://api.github.com/users/pkanal/events?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f';
         
-        this.props.fetchForked('https://api.github.com/users/pkanal/repos?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f');
-        this.props.fetchPulls('https://api.github.com/users/pkanal/events?access_token=e6c468b2a0661da2aec13b5e2c32ad288b178e6f');
+        this.props.fetchForked(reposEndpoint);
+        this.props.fetchPulls(eventsEndpoint);
     }
 
     // Methods
