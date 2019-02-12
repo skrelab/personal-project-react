@@ -5,8 +5,8 @@ import { authenticate } from './store/actions/authenticate';
 import { forkedFetchData } from './store/actions/forked';
 import { pullsFetchData } from './store/actions/pulls';
 
-import { Login } from './Login';
-import { Repository } from './Repository';
+import { Login } from './components/Login';
+import { Repository } from './components/Repository';
 
 
 class App extends Component {
