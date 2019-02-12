@@ -31,7 +31,7 @@ export const reducer = (state = initialState, action) => {
                 ...state, 
                 forked: {...state.forked, isLoading: action.isLoading}
             };
-        case 'FORKED_FETCH_DATA_SUCCESS':
+        case 'FETCH_FORKED_SUCCESS':
             return {
                 ...state, 
                 forked: {...state.forked, items: action.payload}
@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action) => {
                 ...state, 
                 pulls: {...state.pulls, isLoading: action.isLoading}
             };
-        case 'PULLS_FETCH_DATA_SUCCESS':
+        case 'FETCH_PULLS_SUCCESS':
             return {
                 ...state, 
                 pulls: {...state.pulls, items: action.payload}

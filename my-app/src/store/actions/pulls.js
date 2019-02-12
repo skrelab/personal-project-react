@@ -14,14 +14,15 @@ export function pullsIsLoading(bool) {
     };
 }
 
-export function pullsFetchDataSuccess(data) {
+export function fetchPullsSuccess(data) {
     return {
-        type: 'PULLS_FETCH_DATA_SUCCESS',
+        type: 'FETCH_PULLS_SUCCESS',
         payload: data
     };
 }
 
-export const pullsFetchData = (url) => {
+// Thunk Action Creator
+export const fetchPulls = (url) => {
     return (dispatch) => {
         dispatch(pullsIsLoading(true));
         fetch(url)
@@ -29,7 +30,6 @@ export const pullsFetchData = (url) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                dispatch(pullsIsLoading(false));
                 return response;
             })
             .then(response => response.json())
@@ -41,8 +41,9 @@ export const pullsFetchData = (url) => {
                         { [currentEvent.type]: [...(categorizedEvents[currentEvent.type] || []), currentEvent] }
                     ); 
                     }, []); 
-
-            	dispatch(pullsFetchDataSuccess(events.PullRequestEvent));
+                
+                dispatch(pullsIsLoading(false));
+            	dispatch(fetchPullsSuccess(events.PullRequestEvent));
             })
             .catch(() => dispatch(pullsHasErrored(true)));
     };

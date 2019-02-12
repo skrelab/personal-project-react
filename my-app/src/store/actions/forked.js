@@ -14,14 +14,15 @@ export function forkedIsLoading(bool) {
     };
 }
 
-export function forkedFetchDataSuccess(data) {
+export function fetchForkedSuccess(data) {
     return {
-        type: 'FORKED_FETCH_DATA_SUCCESS',
+        type: 'FETCH_FORKED_SUCCESS',
         payload: data
     };
 }
 
-export const forkedFetchData = (url) => {
+// Thunk Action Creator
+export const fetchForked = (url) => {
     return (dispatch) => {
         dispatch(forkedIsLoading(true));
         fetch(url)
@@ -29,7 +30,6 @@ export const forkedFetchData = (url) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                dispatch(forkedIsLoading(false));
                 return response;
             })
             .then(response => response.json())
@@ -39,7 +39,9 @@ export const forkedFetchData = (url) => {
             	        return datum;
             	    }
             	});
-            	dispatch(forkedFetchDataSuccess(forked));
+                
+                dispatch(forkedIsLoading(false));
+            	dispatch(fetchForkedSuccess(forked));
             })
             .catch(() => dispatch(forkedHasErrored(true)));
     };
