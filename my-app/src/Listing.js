@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const Listing = (props) => {
-
 	return (
 		<table className="table mb-2">
 		    <thead>

@@ -26,9 +26,9 @@ export const pullsFetchData = (url) => {
         dispatch(pullsIsLoading(true));
         fetch(url)
             .then(response => {
-                // if (!response.ok) {
-                //     throw Error(response.statusText);
-                // }
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
                 dispatch(pullsIsLoading(false));
                 return response;
             })

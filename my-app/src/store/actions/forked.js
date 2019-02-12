@@ -21,15 +21,14 @@ export function forkedFetchDataSuccess(data) {
     };
 }
 
-// Use thunk bc action creators don't support async actions like fetching data
 export const forkedFetchData = (url) => {
     return (dispatch) => {
         dispatch(forkedIsLoading(true));
         fetch(url)
             .then(response => {
-                // if (!response.ok) {
-                //     throw Error(response.statusText);
-                // }
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
                 dispatch(forkedIsLoading(false));
                 return response;
             })

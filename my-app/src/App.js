@@ -29,23 +29,24 @@ class App extends Component {
         event.preventDefault();
 
         if (event.target.elements.username.value) {
-            this.props.authenticate(true);
+            this.props.authenticate();
         }
     }
     
     render() {
+
+        let components = [];
+        
+        for (const key in this.props.data) {
+            let value = this.props.data[key];
+            components.push(<Repository dataType={key} data={value} />);
+        }
+
         return (
             <div>
             { 
                 this.props.isAuthenticated?
-                <Repository 
-                    forked={this.props.forked} 
-                    pulls={this.props.pulls}
-                    forkedHasErrored={this.props.forkedHasErrored}
-                    forkedIsLoading={this.props.forkedIsLoading}
-                    pullsHasErrored={this.props.pullsHasErrored}
-                    pullsIsLoading={this.props.pullsIsLoading}
-                /> 
+                <div>{components}</div> 
                 : 
                 <Login onSubmit={this.handleOnSubmit} /> 
             }
@@ -57,17 +58,15 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.authenticated, 
-        forked: state.forked,
-        forkedHasErrored: state.forkedHasErrored,
-        forkedIsLoading: state.forkedIsLoading,
-        pulls: state.pulls,
-        pullsHasErrored: state.pullsHasErrored,
-        pullsIsLoading: state.pullsIsLoading,
+        data: {
+            forked: state.forked,
+            pulls: state.pulls, 
+        }
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({ 
-    authenticate: (bool) => dispatch(authenticate(bool)), 
+    authenticate: () => dispatch(authenticate()), 
     forkedFetchData: (url) => dispatch(forkedFetchData(url)), 
     pullsFetchData: (url) => dispatch(pullsFetchData(url)), 
 })
