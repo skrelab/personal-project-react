@@ -26,12 +26,6 @@ export const fetchForked = (url) => {
     return (dispatch) => {
         dispatch(forkedIsLoading(true));
         fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
-            })
             .then(response => response.json())
             .then(data => {
             	const forked = data.filter(datum => {

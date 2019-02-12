@@ -26,12 +26,6 @@ export const fetchPulls = (url) => {
     return (dispatch) => {
         dispatch(pullsIsLoading(true));
         fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
-            })
             .then(response => response.json())
             .then(data => {
 
